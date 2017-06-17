@@ -5,6 +5,7 @@ A simple case study of how to use GraphQL with Ruby on Rails
 ## Libraries used
 - Ruby v2.4.1
 - Rails v5.1.1
+- GraphQL v1.6.3
 
 ## Rails base structure
 The project base code was created with the following command:
