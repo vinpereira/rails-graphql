@@ -17,13 +17,14 @@ The _- -api_ option was used to create a lightweight version of the full-stack f
 ## Running the code
 1. Clone this repo
 2. At rails-graphql folder execute ```bundle install``` to install all dependencies
-3. Start the server with ```rails s```
-4. In another terminal, execute the IRB console with ```bundle exec rails c```
-5. Add some data to Movie and Actor, then place Actor inside Movie
+3. Execute all migrations in SQLite3 with ```rake db:migrate```
+4. Start the server with ```rails s```
+5. In another terminal, execute the IRB console with ```bundle exec rails c```
+6. Add some data to Movie and Actor, then place Actor inside Movie
     - ```movie = Movie.create!(title: "Indiana Jones", year: 1981, summary: "Raiders of the Lost Ark")```
     - ```actor = Actor.create!(name: "Harrison Ford", bio: "Some long biography about this actor")```
     - ```movie.actors << actor```
-6. Exit IRB and query it using cURL:
+7. Exit IRB and query it using cURL:
 ```sh
 curl -XGET http://localhost:3000/movies -d "query={
   movie(id: 1) {
