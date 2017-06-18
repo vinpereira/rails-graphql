@@ -18,13 +18,9 @@ The _- -api_ option was used to create a lightweight version of the full-stack f
 1. Clone this repo
 2. At rails-graphql folder execute ```bundle install``` to install all dependencies
 3. Execute all migrations in SQLite3 with ```rake db:migrate```
-4. Start the server with ```rails s```
-5. In another terminal, execute the IRB console with ```bundle exec rails c```
-6. Add some data to Movie and Actor, then place Actor inside Movie
-    - ```movie = Movie.create!(title: "Indiana Jones", year: 1981, summary: "Raiders of the Lost Ark")```
-    - ```actor = Actor.create!(name: "Harrison Ford", bio: "Some long biography about this actor")```
-    - ```movie.actors << actor```
-7. Exit IRB and query it using cURL:
+4. Put some data in SQLite3 with ```rake db:seed``` (see db/seeds.rb)
+5. Start the server with ```rails s```
+6. Using the terminal, query it with cURL:
 ```sh
 curl -XGET http://localhost:3000/movies -d "query={
   movie(id: 1) {
@@ -36,8 +32,27 @@ curl -XGET http://localhost:3000/movies -d "query={
   }
 }"
 ```
+#### Using IRB to add more data
+1. In another terminal, execute the IRB console with ```bundle exec rails c```
+2. Add some data to Movie and Actor, then place Actor inside Movie
+    - ```movie = Movie.create!(title: "Indiana Jones", year: 1984, summary: "Temple of Doom")```
+    - ```actor = Actor.create!(name: "Harrison Ford", bio: "Some long biography about this actor")```
+    - ```movie.actors << actor```
+3. Exit IRB and query it using cURL:
+```sh
+curl -XGET http://localhost:3000/movies -d "query={
+  movie(id: 5) {
+    title,
+    year,
+    actors {
+      name
+    }
+  }
+}"
+```
 
-You could also query about Actors (by ID) and Movies (by year).
+## Other queries
+You could also query about Actors (by ID) and Movies (by year) -- see app/types/query_type.rb for more.
 
 # TO DO LIST
 - Create some tests
